@@ -16,32 +16,25 @@
             <img src="./assets/images/Group 181.svg" alt="logo" />
         </div>
         <div>
-            <div class="title">Crea il tuo account</div>
+            <div class="title">Hai già un account?</div>
             <div class="App">
-            <form id="myForm">
+            <form id="registerForm" method="POST" action="register.php">
                 <fieldset>
                 <div class="Field">
-                    <label>Inserisci il nome</label>
-                    <input id="nome" placeholder="Mario" />
-                </div>
-                <div class="Field">
-                    <label>Inserisci il cognome</label>
-                    <input id="cognome" placeholder="Rossi" />
-                </div>
-                <div class="Field">
-                    <label>Inserisci l'email</label>
-                    <input id="email" type="email" placeholder="name@example.com" />
+                    <label>Inserisci l’e-mail</label>
+                    <input id="nome" placeholder="name@example.com" required/> 
                 </div>
                 <div class="Field">
                     <label>Inserisci la password</label>
-                    <input id="password" type="password" placeholder="Scrivila qui" />
+                    <input id="password" type="password" placeholder="Scrivila qui" required/>
                     <div id="togglePassword">
                         <img src="./assets/images/Vector.svg"  class="eye"/>
                     </div>
                 </div>
-                <button type="submit">REGISTRATI</button>
+                
+                <button type="submit">ACCEDI</button>
                 <div class="forgotpw">
-                    Hai già un account<strong>? Accedi</strong>
+                    Non hai ancora un profilo<strong>? <a href="./register.php">Registrati </a></strong>
                 </div>
                 </fieldset>
             </form>
@@ -73,49 +66,3 @@
 </body>
 
 </html>
-<!-- <?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Headers: *");
-    header("Access-Control-Allow-Methods: *");
-
-    $db_conn = mysqli_connect("localhost","root","", "edusogno");
-    if($db_conn===false) {
-        die("error: could not connect to database".mysqli_connect());
-    }
-    $method = $_SERVER['REQUEST_METHOD'];
-    //echo "test--".$method; die;
-    switch($method) {
-        case "GET":
-            $alluser = mysqli_query($db_conn, "SELECT * FROM evento");
-            if(mysqli_num_rows($alluser)>0){
-                while($row= mysqli_fetch_array($alluser)){
-                    $json_array["userdata"][]=array("id"=>$row['id'], "attendees"=>$row['attendees'], "eventname"=>$row['nome_evento'],"eventdate"=>$row['data_evento']);
-                }
-                echo json_encode($json_array["userdata"]);
-                return;
-            } else {
-                echo json_encode(["result"=>"please check the data"]);
-                return;
-            }
-
-        case "POST":
-            $userpostdata= json_decode(file_get_contents("php://input"));
-            $nome= $userpostdata->nome;
-            $cognome= $userpostdata->cognome;
-            $email= $userpostdata->email;
-            $password= $userpostdata->password;
-            $result= mysqli_query($db_conn, "INSERT INTO utenti (nome, cognome, email, password)
-            VALUES('$nome','$cognome','$email','$password')");
-
-            if($result){
-                echo json_encode(["success"=>"User added successfully"]);
-                return;
-            } else {
-                echo json_encode(["error"=>"Please check user data"]);
-                return;
-            }
-        break;
-    }
-?> -->
